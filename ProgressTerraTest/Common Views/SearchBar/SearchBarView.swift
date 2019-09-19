@@ -40,13 +40,6 @@ class SearchBarView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    actions()
-    
-    setup()
-  }
-  
   override func layoutSubviews() {
     super.layoutSubviews()
     searchBarTextField.frame.origin = CGPoint(x: textFieldPadding, y: textFieldPadding)

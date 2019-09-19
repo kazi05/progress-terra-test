@@ -10,23 +10,29 @@ import UIKit
 
 class CatalogViewController: UIViewController {
   
-  var searchBarView: SearchBarView?
+  private var searchBarView: SearchBarView?
+  private var collectionView = UICollectionView()
+  private var presenter = CatalogPresenter()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let tap = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
-    view.addGestureRecognizer(tap)
+    
+    configureCollectionView()
+    
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    
     searchBarView = SearchBarView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 0))
-    searchBarView?.backgroundColor = UIColor.groupTableViewBackground
     view.addSubview(searchBarView!)
+    
+    collectionView.frame = CGRect(x: 0, y: searchBarView!.frame.height, width: view.bounds.width, height: view.bounds.height - searchBarView!.frame.height)
+    view.addSubview(collectionView)
   }
   
-  @objc func tapped(_ tap: UITapGestureRecognizer) {
-    view.endEditing(true)
+  private func configureCollectionView() {
+    presenter.register(for: collectionView)
   }
   
 }

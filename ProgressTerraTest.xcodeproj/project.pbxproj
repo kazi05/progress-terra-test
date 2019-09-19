@@ -17,6 +17,14 @@
 		32F9C93923337239007523E3 /* SearchBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C93823337239007523E3 /* SearchBarTextField.swift */; };
 		32F9C93D23337512007523E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C93C23337512007523E3 /* Constants.swift */; };
 		32F9C9412333BA42007523E3 /* SearchBarClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9402333BA42007523E3 /* SearchBarClearButton.swift */; };
+		32F9C9462333C64C007523E3 /* CatalogCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9442333C64C007523E3 /* CatalogCollectionViewCell.swift */; };
+		32F9C9472333C64C007523E3 /* CatalogCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F9C9452333C64C007523E3 /* CatalogCollectionViewCell.xib */; };
+		32F9C94A2333C67B007523E3 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9492333C67B007523E3 /* NibLoadable.swift */; };
+		32F9C94C2333C6D5007523E3 /* CatalogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C94B2333C6D5007523E3 /* CatalogPresenter.swift */; };
+		32F9C94E2333C7BC007523E3 /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C94D2333C7BC007523E3 /* CatalogView.swift */; };
+		32F9C9512333C8E5007523E3 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9502333C8E5007523E3 /* Product.swift */; };
+		32F9C9552333C953007523E3 /* BasicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9542333C953007523E3 /* BasicService.swift */; };
+		32F9C9572333C97C007523E3 /* Reachabelity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9562333C97C007523E3 /* Reachabelity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,14 @@
 		32F9C93823337239007523E3 /* SearchBarTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarTextField.swift; sourceTree = "<group>"; };
 		32F9C93C23337512007523E3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		32F9C9402333BA42007523E3 /* SearchBarClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarClearButton.swift; sourceTree = "<group>"; };
+		32F9C9442333C64C007523E3 /* CatalogCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogCollectionViewCell.swift; sourceTree = "<group>"; };
+		32F9C9452333C64C007523E3 /* CatalogCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalogCollectionViewCell.xib; sourceTree = "<group>"; };
+		32F9C9492333C67B007523E3 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		32F9C94B2333C6D5007523E3 /* CatalogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogPresenter.swift; sourceTree = "<group>"; };
+		32F9C94D2333C7BC007523E3 /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
+		32F9C9502333C8E5007523E3 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		32F9C9542333C953007523E3 /* BasicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicService.swift; sourceTree = "<group>"; };
+		32F9C9562333C97C007523E3 /* Reachabelity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachabelity.swift; sourceTree = "<group>"; };
 		D06BFEE2C067741312EEF657 /* Pods_ProgressTerraTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressTerraTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD11796984850DA6C4C450C /* Pods-ProgressTerraTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressTerraTest.release.xcconfig"; path = "Target Support Files/Pods-ProgressTerraTest/Pods-ProgressTerraTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +87,8 @@
 			children = (
 				32F9C91E23336A1F007523E3 /* AppDelegate.swift */,
 				32F9C93C23337512007523E3 /* Constants.swift */,
+				32F9C9482333C655007523E3 /* Helpers */,
+				32F9C9522333C93B007523E3 /* Services */,
 				32F9C934233371A7007523E3 /* Common Views */,
 				32F9C93023337148007523E3 /* Scenes */,
 				32F9C92223336A1F007523E3 /* Main.storyboard */,
@@ -92,7 +110,11 @@
 		32F9C93123337154007523E3 /* Catalog */ = {
 			isa = PBXGroup;
 			children = (
+				32F9C94F2333C8D3007523E3 /* Model */,
+				32F9C9432333C636007523E3 /* Cells */,
 				32F9C9322333716F007523E3 /* CatalogViewController.swift */,
+				32F9C94B2333C6D5007523E3 /* CatalogPresenter.swift */,
+				32F9C94D2333C7BC007523E3 /* CatalogView.swift */,
 			);
 			path = Catalog;
 			sourceTree = "<group>";
@@ -113,6 +135,48 @@
 				32F9C9402333BA42007523E3 /* SearchBarClearButton.swift */,
 			);
 			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		32F9C9432333C636007523E3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C9442333C64C007523E3 /* CatalogCollectionViewCell.swift */,
+				32F9C9452333C64C007523E3 /* CatalogCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		32F9C9482333C655007523E3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C9492333C67B007523E3 /* NibLoadable.swift */,
+				32F9C9562333C97C007523E3 /* Reachabelity.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		32F9C94F2333C8D3007523E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C9502333C8E5007523E3 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32F9C9522333C93B007523E3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C9532333C942007523E3 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		32F9C9532333C942007523E3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C9542333C953007523E3 /* BasicService.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		AC47228608BC42FB10E67824 /* Pods */ = {
@@ -192,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32F9C9472333C64C007523E3 /* CatalogCollectionViewCell.xib in Resources */,
 				32F9C92923336A20007523E3 /* LaunchScreen.storyboard in Resources */,
 				32F9C92623336A20007523E3 /* Assets.xcassets in Resources */,
 				32F9C92423336A1F007523E3 /* Main.storyboard in Resources */,
@@ -248,11 +313,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F9C93D23337512007523E3 /* Constants.swift in Sources */,
+				32F9C94A2333C67B007523E3 /* NibLoadable.swift in Sources */,
 				32F9C9412333BA42007523E3 /* SearchBarClearButton.swift in Sources */,
 				32F9C9332333716F007523E3 /* CatalogViewController.swift in Sources */,
+				32F9C9552333C953007523E3 /* BasicService.swift in Sources */,
+				32F9C94E2333C7BC007523E3 /* CatalogView.swift in Sources */,
+				32F9C9512333C8E5007523E3 /* Product.swift in Sources */,
 				32F9C936233371FE007523E3 /* SearchBarView.swift in Sources */,
 				32F9C91F23336A1F007523E3 /* AppDelegate.swift in Sources */,
+				32F9C9572333C97C007523E3 /* Reachabelity.swift in Sources */,
+				32F9C9462333C64C007523E3 /* CatalogCollectionViewCell.swift in Sources */,
 				32F9C93923337239007523E3 /* SearchBarTextField.swift in Sources */,
+				32F9C94C2333C6D5007523E3 /* CatalogPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
