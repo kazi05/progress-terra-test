@@ -15,6 +15,7 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
   private let cornerRadius: CGFloat = 10
   private var isAnimating = false
   
+  var borderColor = Constants.searchColor
   var scaleUpClosure: (() -> Void)?
   var scaleDownClosure: ((String) -> Void)?
   
@@ -24,13 +25,13 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
     let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
     imageView.contentMode = .scaleAspectFit
     imageView.image = leftIcon
-    imageView.tintColor = Constants.searchColor
+    imageView.tintColor = borderColor
     leftView = imageView
     leftViewMode = .always
     
     textColor = Constants.searchColor
     
-    borderView.layer.borderColor = Constants.searchColor.cgColor
+    borderView.layer.borderColor = borderColor.cgColor
     borderView.layer.borderWidth = 2
     borderView.layer.cornerRadius = cornerRadius
     borderView.backgroundColor = .clear
@@ -66,8 +67,8 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
     guard let searchText = text else { return }
     UIView.animate(withDuration: 0.5) {
       self.bounds.size.height -= 10
-      self.borderView.frame = CGRect(x: 0, y: 0, width: self.bounds.height, height: self.bounds.height)
       self.layoutIfNeeded()
+      self.borderView.frame = CGRect(x: 0, y: 0, width: self.bounds.height, height: self.bounds.height)
       self.scaleDownClosure?(searchText)
     }
   }

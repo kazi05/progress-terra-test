@@ -16,6 +16,7 @@
 		32F9C936233371FE007523E3 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C935233371FE007523E3 /* SearchBarView.swift */; };
 		32F9C93923337239007523E3 /* SearchBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C93823337239007523E3 /* SearchBarTextField.swift */; };
 		32F9C93D23337512007523E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C93C23337512007523E3 /* Constants.swift */; };
+		32F9C9412333BA42007523E3 /* SearchBarClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9402333BA42007523E3 /* SearchBarClearButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		32F9C935233371FE007523E3 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		32F9C93823337239007523E3 /* SearchBarTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarTextField.swift; sourceTree = "<group>"; };
 		32F9C93C23337512007523E3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		32F9C9402333BA42007523E3 /* SearchBarClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarClearButton.swift; sourceTree = "<group>"; };
 		D06BFEE2C067741312EEF657 /* Pods_ProgressTerraTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressTerraTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD11796984850DA6C4C450C /* Pods-ProgressTerraTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressTerraTest.release.xcconfig"; path = "Target Support Files/Pods-ProgressTerraTest/Pods-ProgressTerraTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 			children = (
 				32F9C935233371FE007523E3 /* SearchBarView.swift */,
 				32F9C93823337239007523E3 /* SearchBarTextField.swift */,
+				32F9C9402333BA42007523E3 /* SearchBarClearButton.swift */,
 			);
 			path = SearchBar;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F9C93D23337512007523E3 /* Constants.swift in Sources */,
+				32F9C9412333BA42007523E3 /* SearchBarClearButton.swift in Sources */,
 				32F9C9332333716F007523E3 /* CatalogViewController.swift in Sources */,
 				32F9C936233371FE007523E3 /* SearchBarView.swift in Sources */,
 				32F9C91F23336A1F007523E3 /* AppDelegate.swift in Sources */,
