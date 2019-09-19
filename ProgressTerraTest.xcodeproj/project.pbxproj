@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		32F9C92423336A1F007523E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32F9C92223336A1F007523E3 /* Main.storyboard */; };
 		32F9C92623336A20007523E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32F9C92523336A20007523E3 /* Assets.xcassets */; };
 		32F9C92923336A20007523E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32F9C92723336A20007523E3 /* LaunchScreen.storyboard */; };
+		32F9C9332333716F007523E3 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9322333716F007523E3 /* CatalogViewController.swift */; };
+		32F9C936233371FE007523E3 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C935233371FE007523E3 /* SearchBarView.swift */; };
+		32F9C93923337239007523E3 /* SearchBarTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C93823337239007523E3 /* SearchBarTextField.swift */; };
+		32F9C93D23337512007523E3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C93C23337512007523E3 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		32F9C92523336A20007523E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		32F9C92823336A20007523E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		32F9C92A23336A20007523E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32F9C9322333716F007523E3 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		32F9C935233371FE007523E3 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		32F9C93823337239007523E3 /* SearchBarTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarTextField.swift; sourceTree = "<group>"; };
+		32F9C93C23337512007523E3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D06BFEE2C067741312EEF657 /* Pods_ProgressTerraTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressTerraTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD11796984850DA6C4C450C /* Pods-ProgressTerraTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressTerraTest.release.xcconfig"; path = "Target Support Files/Pods-ProgressTerraTest/Pods-ProgressTerraTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +68,9 @@
 			isa = PBXGroup;
 			children = (
 				32F9C91E23336A1F007523E3 /* AppDelegate.swift */,
+				32F9C93C23337512007523E3 /* Constants.swift */,
+				32F9C934233371A7007523E3 /* Common Views */,
+				32F9C93023337148007523E3 /* Scenes */,
 				32F9C92223336A1F007523E3 /* Main.storyboard */,
 				32F9C92523336A20007523E3 /* Assets.xcassets */,
 				32F9C92723336A20007523E3 /* LaunchScreen.storyboard */,
@@ -68,13 +79,45 @@
 			path = ProgressTerraTest;
 			sourceTree = "<group>";
 		};
+		32F9C93023337148007523E3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C93123337154007523E3 /* Catalog */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		32F9C93123337154007523E3 /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C9322333716F007523E3 /* CatalogViewController.swift */,
+			);
+			path = Catalog;
+			sourceTree = "<group>";
+		};
+		32F9C934233371A7007523E3 /* Common Views */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C93723337211007523E3 /* SearchBar */,
+			);
+			path = "Common Views";
+			sourceTree = "<group>";
+		};
+		32F9C93723337211007523E3 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C935233371FE007523E3 /* SearchBarView.swift */,
+				32F9C93823337239007523E3 /* SearchBarTextField.swift */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
 		AC47228608BC42FB10E67824 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				32B5D7483C1FC40839B37DB4 /* Pods-ProgressTerraTest.debug.xcconfig */,
 				FBD11796984850DA6C4C450C /* Pods-ProgressTerraTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -201,7 +244,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32F9C93D23337512007523E3 /* Constants.swift in Sources */,
+				32F9C9332333716F007523E3 /* CatalogViewController.swift in Sources */,
+				32F9C936233371FE007523E3 /* SearchBarView.swift in Sources */,
 				32F9C91F23336A1F007523E3 /* AppDelegate.swift in Sources */,
+				32F9C93923337239007523E3 /* SearchBarTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
