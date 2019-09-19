@@ -25,6 +25,8 @@
 		32F9C9512333C8E5007523E3 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9502333C8E5007523E3 /* Product.swift */; };
 		32F9C9552333C953007523E3 /* BasicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9542333C953007523E3 /* BasicService.swift */; };
 		32F9C9572333C97C007523E3 /* Reachabelity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9562333C97C007523E3 /* Reachabelity.swift */; };
+		32F9C95A2333CCB2007523E3 /* CatalogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C9592333CCB2007523E3 /* CatalogService.swift */; };
+		32F9C95C2333CD00007523E3 /* CatalogServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F9C95B2333CD00007523E3 /* CatalogServiceImplementation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		32F9C9502333C8E5007523E3 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		32F9C9542333C953007523E3 /* BasicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicService.swift; sourceTree = "<group>"; };
 		32F9C9562333C97C007523E3 /* Reachabelity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachabelity.swift; sourceTree = "<group>"; };
+		32F9C9592333CCB2007523E3 /* CatalogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogService.swift; sourceTree = "<group>"; };
+		32F9C95B2333CD00007523E3 /* CatalogServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogServiceImplementation.swift; sourceTree = "<group>"; };
 		D06BFEE2C067741312EEF657 /* Pods_ProgressTerraTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressTerraTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD11796984850DA6C4C450C /* Pods-ProgressTerraTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressTerraTest.release.xcconfig"; path = "Target Support Files/Pods-ProgressTerraTest/Pods-ProgressTerraTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,8 +179,18 @@
 			isa = PBXGroup;
 			children = (
 				32F9C9542333C953007523E3 /* BasicService.swift */,
+				32F9C9582333CC8B007523E3 /* Catalog Service */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		32F9C9582333CC8B007523E3 /* Catalog Service */ = {
+			isa = PBXGroup;
+			children = (
+				32F9C9592333CCB2007523E3 /* CatalogService.swift */,
+				32F9C95B2333CD00007523E3 /* CatalogServiceImplementation.swift */,
+			);
+			path = "Catalog Service";
 			sourceTree = "<group>";
 		};
 		AC47228608BC42FB10E67824 /* Pods */ = {
@@ -317,10 +331,12 @@
 				32F9C9412333BA42007523E3 /* SearchBarClearButton.swift in Sources */,
 				32F9C9332333716F007523E3 /* CatalogViewController.swift in Sources */,
 				32F9C9552333C953007523E3 /* BasicService.swift in Sources */,
+				32F9C95A2333CCB2007523E3 /* CatalogService.swift in Sources */,
 				32F9C94E2333C7BC007523E3 /* CatalogView.swift in Sources */,
 				32F9C9512333C8E5007523E3 /* Product.swift in Sources */,
 				32F9C936233371FE007523E3 /* SearchBarView.swift in Sources */,
 				32F9C91F23336A1F007523E3 /* AppDelegate.swift in Sources */,
+				32F9C95C2333CD00007523E3 /* CatalogServiceImplementation.swift in Sources */,
 				32F9C9572333C97C007523E3 /* Reachabelity.swift in Sources */,
 				32F9C9462333C64C007523E3 /* CatalogCollectionViewCell.swift in Sources */,
 				32F9C93923337239007523E3 /* SearchBarTextField.swift in Sources */,
