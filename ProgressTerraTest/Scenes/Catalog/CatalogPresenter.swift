@@ -10,9 +10,14 @@ import UIKit
 
 class CatalogPresenter: NSObject {
   
+  private var catalogService: CatalogService?
   private weak var catalogView: CatalogView?
   
   private var products: [Product] = []
+  
+  init(catalogService: CatalogService) {
+    self.catalogService = catalogService
+  }
   
   func set(catalogView: CatalogView) {
     self.catalogView = catalogView
@@ -21,6 +26,13 @@ class CatalogPresenter: NSObject {
   func register(for collectionView: UICollectionView) {
     collectionView.dataSource = self
     collectionView.register(CatalogCollectionViewCell.nib, forCellWithReuseIdentifier: CatalogCollectionViewCell.name)
+  }
+  
+  func fetchProducts(with searchString: String = "Набор", and page: Int = 1) {
+    catalogService?.fetchProducts(with: searchString, and: page, completion: { [weak self] (products, error) in
+      print(products)
+      self?.catalogView?.displayProducts()
+    })
   }
 }
 

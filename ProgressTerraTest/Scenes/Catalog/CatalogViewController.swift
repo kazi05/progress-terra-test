@@ -11,14 +11,28 @@ import UIKit
 class CatalogViewController: UIViewController {
   
   private var searchBarView: SearchBarView?
-  private var collectionView = UICollectionView()
-  private var presenter = CatalogPresenter()
+  private lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+  private var catalogService: CatalogService = CatalogServiceImplementation()
+  private lazy var presenter = CatalogPresenter(catalogService: catalogService)
+  
+  private let layout: UICollectionViewFlowLayout = {
+    let layout = UICollectionViewFlowLayout()
+    let padding: CGFloat = 2.0
+    let width = UIScreen.main.bounds.width / 3 - (padding * 2)
+    layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+    layout.itemSize = CGSize(width: width, height: width)
+    layout.minimumLineSpacing = padding
+    layout.minimumInteritemSpacing = padding
+    return layout
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    configureCollectionView()
     
+    configureCollectionView()
+    presenter.set(catalogView: self)
+    presenter.fetchProducts()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -28,6 +42,7 @@ class CatalogViewController: UIViewController {
     view.addSubview(searchBarView!)
     
     collectionView.frame = CGRect(x: 0, y: searchBarView!.frame.height, width: view.bounds.width, height: view.bounds.height - searchBarView!.frame.height)
+    collectionView.backgroundColor = .white
     view.addSubview(collectionView)
   }
   
@@ -35,4 +50,11 @@ class CatalogViewController: UIViewController {
     presenter.register(for: collectionView)
   }
   
+}
+
+extension CatalogViewController: CatalogView {
+  
+  func displayProducts() {
+    collectionView.reloadData()
+  }
 }

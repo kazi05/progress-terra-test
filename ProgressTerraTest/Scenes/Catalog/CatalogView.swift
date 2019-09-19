@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CatalogView: class {
-  
+  func displayProducts()
 }
