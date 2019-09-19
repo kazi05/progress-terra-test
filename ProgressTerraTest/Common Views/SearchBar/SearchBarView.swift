@@ -24,9 +24,21 @@ class SearchBarView: UIView {
   
   private lazy var clearButton: SearchBarClearButton = {
     let button = SearchBarClearButton(with: "Очистить")
+    button.alpha = 0
     button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     return button
   }()
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    actions()
+    
+    setup()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -37,8 +49,12 @@ class SearchBarView: UIView {
   
   override func layoutSubviews() {
     super.layoutSubviews()
-    breadCrumbsLabel.frame.origin = CGPoint(x: textFieldPadding, y: searchBarTextField.frame.height + 20)
-    clearButton.frame.origin = CGPoint(x: bounds.width - 150 - textFieldPadding, y: searchBarTextField.frame.height + 20)
+    searchBarTextField.frame.origin = CGPoint(x: textFieldPadding, y: textFieldPadding)
+    breadCrumbsLabel.frame.origin = CGPoint(x: textFieldPadding, y: searchBarTextField.frame.height + 10)
+    clearButton.frame.origin = CGPoint(x: bounds.width - 150 - textFieldPadding, y: searchBarTextField.frame.height + 10)
+    
+    frame.size.height = textFieldPadding + searchBarTextField.frame.height + breadCrumbsLabel.frame.height + (textFieldPadding * 2)
+    frame.origin.y = (textFieldPadding + searchBarTextField.frame.height + breadCrumbsLabel.frame.height + (textFieldPadding * 2)) / 2
   }
   
   private func setup() {
@@ -47,18 +63,18 @@ class SearchBarView: UIView {
     
     breadCrumbsLabel.text = "Lorema sdad asd"
     breadCrumbsLabel.sizeToFit()
-    breadCrumbsLabel.frame.size.height = 25
+    breadCrumbsLabel.frame.size.height = 30
     addSubview(breadCrumbsLabel)
     
-    clearButton.frame = CGRect(x: bounds.width - 150 - textFieldPadding, y: searchBarTextField.frame.height + 20, width: 150, height: 25)
+    clearButton.frame = CGRect(x: bounds.width - 150 - textFieldPadding, y: searchBarTextField.frame.height + 10, width: 150, height: 30)
     addSubview(clearButton)
   }
   
   private func actions() {
     searchBarTextField.scaleUpClosure = { [weak self] in
-      print("Scaled up")
       UIView.animate(withDuration: 0.5, animations: {
         self?.breadCrumbsLabel.font = self?.breadCrumbsLabel.font.withSize(18)
+        self?.clearButton.alpha = 1
         self?.layoutIfNeeded()
       })
     }
@@ -67,6 +83,7 @@ class SearchBarView: UIView {
       print(searchText)
       UIView.animate(withDuration: 0.5, animations: {
         self?.breadCrumbsLabel.font = self?.breadCrumbsLabel.font.withSize(14)
+        self?.clearButton.alpha = 0
         self?.layoutIfNeeded()
       })
     }
