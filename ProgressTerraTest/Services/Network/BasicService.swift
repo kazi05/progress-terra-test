@@ -22,16 +22,16 @@ class BasicService {
   }
   
   
-  func request(path: APIPath, with params: Parameters, and page: Int, completion: @escaping (_ json: JSON?, _ error: String?) -> Void) {
+  func request(path: APIPath, with params: Parameters, and headers: [String: String], completion: @escaping (_ json: JSON?, _ error: String?) -> Void) {
     let fullUrlString = String(format: "%@/%@/", APIConstants.host, path.rawValue)
-    var headers = APIConstants.headers
-    headers["pageNumberIncome"] = "\(page)"
+    var staticHeaders = APIConstants.headers
+    headers.forEach { staticHeaders[$0.key] = $0.value }
     
     if !Reachabelity.isConnectedToNetwork(){
       completion(nil, "No internet connection")
     } else {
       Alamofire
-        .request(fullUrlString, method: path.method, parameters: params, encoding: URLEncoding.default, headers: headers)
+        .request(fullUrlString, method: path.method, parameters: params, encoding: URLEncoding.default, headers: staticHeaders)
         .responseJSON { (response) in
           switch response.result {
           case .failure(let error): completion(nil, error.localizedDescription)

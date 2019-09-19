@@ -13,7 +13,8 @@ class CatalogServiceImplementation: BasicService, CatalogService {
   
   func fetchProducts(with searchString: String, and page: Int, completion: @escaping ([Product]?, String?) -> Void) {
     let param = ["SearchString": searchString]
-    request(path: APIPath.fetchProducts, with: param, and: page) { (json, error) in
+    let headers: [String: String] = ["pageNumberIncome": "\(page)"]
+    request(path: APIPath.fetchProducts, with: param, and: headers) { (json, error) in
       if let error = error {
         completion(nil, error)
       }
@@ -37,7 +38,6 @@ class CatalogServiceImplementation: BasicService, CatalogService {
             completion(nil, error.localizedDescription)
           }
         }
-        
         completion(photos, nil)
       }
     }

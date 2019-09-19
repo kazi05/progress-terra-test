@@ -17,7 +17,7 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
   
   var borderColor = Constants.searchColor
   var scaleUpClosure: (() -> Void)?
-  var scaleDownClosure: ((String) -> Void)?
+  var scaleDownClosure: ((String, Bool) -> Void)?
   
   init(with leftIcon: UIImage) {
     super.init(frame: CGRect.zero)
@@ -59,7 +59,7 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
     }
   }
   
-  private func scaleDownTextField() {
+  private func scaleDownTextField(shouldReturn: Bool = false) {
     isAnimating = true
     leftPadding = 5
     textColor = .black
@@ -69,7 +69,7 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
       self.bounds.size.height -= 10
       self.layoutIfNeeded()
       self.borderView.frame = CGRect(x: 0, y: 0, width: self.bounds.height, height: self.bounds.height)
-      self.scaleDownClosure?(searchText)
+      self.scaleDownClosure?(searchText, shouldReturn)
     }
   }
   
@@ -109,6 +109,12 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {
     layoutIfNeeded()
     scaleDownTextField()
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    layoutIfNeeded()
+    scaleDownTextField(shouldReturn: true)
+    return true
   }
   
 }

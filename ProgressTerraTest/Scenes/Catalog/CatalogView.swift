@@ -10,4 +10,5 @@ import Foundation
 
 protocol CatalogView: class {
   func displayProducts()
+  func displayError(with title: String, and message: String)
 }

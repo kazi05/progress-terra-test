@@ -30,8 +30,17 @@ class CatalogPresenter: NSObject {
   
   func fetchProducts(with searchString: String = "Набор", and page: Int = 1) {
     catalogService?.fetchProducts(with: searchString, and: page, completion: { [weak self] (products, error) in
-      print(products)
-      self?.catalogView?.displayProducts()
+      if let error = error {
+        self?.catalogView?.displayError(with: error, and: "")
+      }
+      
+      if let products = products {
+        if page == 1 { self?.products = [] }
+        self?.products += products
+        DispatchQueue.main.async {
+          self?.catalogView?.displayProducts()
+        }
+      }
     })
   }
 }
@@ -44,7 +53,8 @@ extension CatalogPresenter: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogCollectionViewCell.name, for: indexPath) as! CatalogCollectionViewCell
-    
+    let product = products[indexPath.row]
+    cell.set(product: product)
     return cell
   }
   

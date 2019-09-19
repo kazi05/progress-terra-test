@@ -8,10 +8,20 @@
 
 import UIKit
 
+protocol SearchBarViewDelegate: class {
+  func fetchProducts(with searchText: String)
+}
+
 class SearchBarView: UIView {
 
   private let searchBarTextField: SearchBarTextField = SearchBarTextField(with: #imageLiteral(resourceName: "search.png"))
   private let textFieldPadding: CGFloat = 10
+  
+  weak var delegate: SearchBarViewDelegate?
+  
+  func set(delegate: SearchBarViewDelegate) {
+    self.delegate = delegate
+  }
   
   private lazy var breadCrumbsLabel: UILabel = {
     let label = UILabel()
@@ -25,7 +35,7 @@ class SearchBarView: UIView {
   private lazy var clearButton: SearchBarClearButton = {
     let button = SearchBarClearButton(with: "Очистить")
     button.alpha = 0
-    button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(clearButtonTapped(_:)), for: .touchUpInside)
     return button
   }()
   
@@ -72,17 +82,24 @@ class SearchBarView: UIView {
       })
     }
     
-    searchBarTextField.scaleDownClosure = { [weak self] (searchText) in
+    searchBarTextField.scaleDownClosure = { [weak self] (searchText, isReturn) in
       print(searchText)
       UIView.animate(withDuration: 0.5, animations: {
         self?.breadCrumbsLabel.font = self?.breadCrumbsLabel.font.withSize(14)
         self?.clearButton.alpha = 0
         self?.layoutIfNeeded()
       })
+      if !searchText.isEmpty && isReturn {
+        self?.delegate?.fetchProducts(with: searchText)
+      }
     }
   }
   
-  @objc private func buttonTapped(_ sender: UIButton) {
+  func focusToSearchTextField() {
+    searchBarTextField.becomeFirstResponder()
+  }
+  
+  @objc private func clearButtonTapped(_ sender: UIButton) {
     
   }
 
