@@ -14,12 +14,17 @@ class SearchBarView: UIView {
   
   private let textFieldPadding: CGFloat = 10
   
-  override func layoutSubviews() {
-    super.layoutSubviews()
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    searchBarTextField.scaleUpClosure = { [weak self] in
+      print("Scaled up")
+    }
     
-    searchBarTextField.frame = CGRect(x: textFieldPadding, y: textFieldPadding, width: bounds.width - textFieldPadding * 2, height: 40)
-//    searchBarTextField.placeholder = "Поиск..."
+    searchBarTextField.scaleDownClosure = { [weak self] (searchText) in
+      print(searchText)
+    }
     
+    searchBarTextField.frame = CGRect(x: textFieldPadding, y: textFieldPadding, width: bounds.width - textFieldPadding * 2, height: 30)
     addSubview(searchBarTextField)
   }
 

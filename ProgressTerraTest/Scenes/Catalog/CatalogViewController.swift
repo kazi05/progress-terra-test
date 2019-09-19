@@ -12,8 +12,12 @@ class CatalogViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
+    let tap = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+    view.addGestureRecognizer(tap)
+  }
+  
+  @objc func tapped(_ tap: UITapGestureRecognizer) {
+    view.endEditing(true)
   }
   
 }
