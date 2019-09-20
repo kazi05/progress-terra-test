@@ -10,11 +10,11 @@ import UIKit
 
 class CatalogViewController: UIViewController {
   
+  //MARK: - Private properties
   private var searchBarView: SearchBarView?
   private var collectionView: UICollectionView!
   private var catalogService: CatalogService = CatalogServiceImplementation()
   private lazy var presenter = CatalogPresenter(catalogService: catalogService)
-  private var currentPage = 1
   
   private let layout: UICollectionViewFlowLayout = {
     let layout = UICollectionViewFlowLayout()
@@ -28,40 +28,47 @@ class CatalogViewController: UIViewController {
     return layout
   }()
   
+  private var activity: UIActivityIndicatorView = {
+    let indicator = UIActivityIndicatorView(style: .gray)
+    indicator.hidesWhenStopped = true
+    return indicator
+  }()
+  
+  //MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
     presenter.set(catalogView: self)
     presenter.fetchProducts()
-    
-    searchBarView = SearchBarView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 0))
-    searchBarView?.delegate = self
-    view.addSubview(searchBarView!)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    print(searchBarView!.frame.height)
+    
+    searchBarView = SearchBarView(frame: CGRect(x: 0, y: view.safeAreaInsets.top, width: view.bounds.width, height: 0))
+    searchBarView?.delegate = self
+    view.addSubview(searchBarView!)
+    
     collectionView = UICollectionView(frame: CGRect(x: 0, y: searchBarView!.frame.height + searchBarView!.frame.height / 2, width: view.bounds.width, height: view.bounds.height - searchBarView!.frame.height), collectionViewLayout: layout)
     collectionView.backgroundColor = .white
+    collectionView.isHidden = true
     view.addSubview(collectionView)
     configureCollectionView()
-  }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
     
+    activity.center = view.center
+    view.addSubview(activity)
+    activity.startAnimating()
   }
   
+  //MARK: - Decorations
   private func configureCollectionView() {
     presenter.register(for: collectionView)
     collectionView.delegate = self
   }
   
-  
-  
 }
 
+//MARK: - UICollectionViewDelegate
 extension CatalogViewController: UICollectionViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if scrollView.contentOffset.y < -50 {
@@ -72,21 +79,28 @@ extension CatalogViewController: UICollectionViewDelegate {
   }
 }
 
+//MARK: - View methods
 extension CatalogViewController: CatalogView {
+  
   func displayError(with title: String, and message: String) {
     showAlert(title: title, message: message, completion: {})
+    activity.stopAnimating()
   }
   
-  
   func displayProducts() {
+    activity.stopAnimating()
+    collectionView.isHidden = false
     collectionView.reloadData()
-    currentPage += 1
   }
 }
 
+//MARK: - SearchBarViewDelegate
 extension CatalogViewController: SearchBarViewDelegate {
-  func fetchProducts(with searchText: String) {
-    presenter.fetchProducts(with: searchText)
+  func fetchProducts(with searchText: String?) {
+    activity.startAnimating()
+    collectionView.isHidden = true
+    guard let searchString = searchText else { presenter.fetchProducts(); return }
+    presenter.fetchProducts(with: searchString)
     view.endEditing(true)
   }
   

@@ -10,15 +10,19 @@ import UIKit
 
 class SearchBarTextField: UITextField, UITextFieldDelegate {
 
+  //MARK: - Private properties
   private let borderView = UIView()
   private var leftPadding: CGFloat = 5
   private let cornerRadius: CGFloat = 10
   private var isAnimating = false
+  private var isReturnKeyTapped = false
   
+  //MARK: Public properties
   var borderColor = Constants.searchColor
   var scaleUpClosure: (() -> Void)?
   var scaleDownClosure: ((String, Bool) -> Void)?
   
+  //MARK: - Init
   init(with leftIcon: UIImage) {
     super.init(frame: CGRect.zero)
     
@@ -46,11 +50,16 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
     fatalError("init(coder:) has not been implemented")
   }
   
+  //MARK: - Animations
   private func scaleUpTextField() {
     isAnimating = true
+    isReturnKeyTapped = false
     leftPadding = 10
     textColor = Constants.searchColor
     attributedPlaceholder = NSAttributedString(string: "Поиск", attributes: [NSAttributedString.Key.foregroundColor: Constants.searchColor])
+    UIView.performWithoutAnimation {
+      self.layoutIfNeeded()
+    }
     UIView.animate(withDuration: 0.5) {
       self.bounds.size.height += 10
       self.borderView.frame = self.bounds
@@ -59,20 +68,24 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
     }
   }
   
-  private func scaleDownTextField(shouldReturn: Bool = false) {
+  private func scaleDownTextField() {
     isAnimating = true
     leftPadding = 5
     textColor = .black
     attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: Constants.searchColor])
     guard let searchText = text else { return }
+    UIView.performWithoutAnimation {
+      self.layoutIfNeeded()
+    }
     UIView.animate(withDuration: 0.5) {
       self.bounds.size.height -= 10
       self.layoutIfNeeded()
       self.borderView.frame = CGRect(x: 0, y: 0, width: self.bounds.height, height: self.bounds.height)
-      self.scaleDownClosure?(searchText, shouldReturn)
+      self.scaleDownClosure?(searchText, self.isReturnKeyTapped)
     }
   }
   
+  //MARK: - Lifecycle
   override func layoutSubviews() {
     super.layoutSubviews()
     if !isAnimating {
@@ -101,19 +114,23 @@ class SearchBarTextField: UITextField, UITextFieldDelegate {
     return bounds.inset(by: insets)
   }
   
+  //MARK: - Textfield actions
   func textFieldDidBeginEditing(_ textField: UITextField) {
     layoutIfNeeded()
     scaleUpTextField()
   }
   
   func textFieldDidEndEditing(_ textField: UITextField) {
-    layoutIfNeeded()
-    scaleDownTextField()
+    if !isReturnKeyTapped {
+      layoutIfNeeded()
+      scaleDownTextField()
+    }
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    isReturnKeyTapped = true
     layoutIfNeeded()
-    scaleDownTextField(shouldReturn: true)
+    scaleDownTextField()
     return true
   }
   

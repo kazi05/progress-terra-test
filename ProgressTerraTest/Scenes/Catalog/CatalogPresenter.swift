@@ -10,19 +10,23 @@ import UIKit
 
 class CatalogPresenter: NSObject {
   
+  //MARK: - Private properties
   private var catalogService: CatalogService?
   private weak var catalogView: CatalogView?
   
   private var products: [Product] = []
   
+  //MARK: - Init
   init(catalogService: CatalogService) {
     self.catalogService = catalogService
   }
   
+  //MARK: - Configuration
   func set(catalogView: CatalogView) {
     self.catalogView = catalogView
   }
   
+  //MARK: - Presenter methods
   func register(for collectionView: UICollectionView) {
     collectionView.dataSource = self
     collectionView.register(CatalogCollectionViewCell.nib, forCellWithReuseIdentifier: CatalogCollectionViewCell.name)
@@ -45,6 +49,7 @@ class CatalogPresenter: NSObject {
   }
 }
 
+//MARK: - UICollectionViewDataSource
 extension CatalogPresenter: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
